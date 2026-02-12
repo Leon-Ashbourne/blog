@@ -1,0 +1,11 @@
+::backdrop {
+  background-image: radial-gradient(circle,rgba(53, 54, 59, 0.75) 3%, rgba(196, 196, 196, 1) 40%);
+  opacity: 0.95;
+}
+
+.dialog-controllers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px;
+}
