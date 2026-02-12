@@ -2,6 +2,24 @@ import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import './App.css';
 
+async function fetchBlogContent(content) {
+
+  const token = localStorage.getItem('Token');
+  const url = 'http://localhost:5000/posts';
+
+  const { data, error } = await fetch(url, {
+    mode: "no-cors",
+    method: "post",
+    headers: {
+      ContentType: "application/json"
+    },
+    body: {
+      Autherization: `Bearer ${token}`,
+      content: content
+    }
+  })
+}
+
 export default function App() {
 
   const editorRef = useRef(null);
@@ -30,7 +48,7 @@ export default function App() {
   const handleSubmit = async () => {
     if(editorRef.current) {
       const content = editorRef.current.getContent();
-      // const done = await fetchBlogContent(content);
+      const done = await fetchBlogContent(content);
     }
   }
 
