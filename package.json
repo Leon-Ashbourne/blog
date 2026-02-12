@@ -2,13 +2,11 @@
   "name": "blog",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "postinstall": "node ./postinstall.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tinymce/tinymce-react": "^6.3.0",
