@@ -1,0 +1,20 @@
+.loading-animation {
+    border: 12px solid #B2BEB5; 
+    border-style: dotted;
+    border-top: solid black;
+    border-radius: 50%;
+    animation-delay: 1s;
+    animation-duration: 4s;
+    animation-name: loader;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
