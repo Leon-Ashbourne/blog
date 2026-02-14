@@ -2,22 +2,17 @@ import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import './App.css';
 
-async function fetchBlogContent(content) {
+function fetchBlogContent(content, title) {
+  const targetOrigin = "http://localhost:5173";
 
-  const token = localStorage.getItem('Token');
-  const url = 'http://localhost:5000/posts';
+  const sendData = () => {
 
-  const { data, error } = await fetch(url, {
-    mode: "no-cors",
-    method: "post",
-    headers: {
-      ContentType: "application/json"
-    },
-    body: {
-      Autherization: `Bearer ${token}`,
-      content: content
-    }
-  })
+    const iframe = document.querySelector('#main-domain');
+    const window = iframe.contentWindow;
+    window.postMessage(JSON.stringify({title, content}), targetOrigin);
+  }
+
+  sendData();
 }
 
 export default function App() {
@@ -48,7 +43,14 @@ export default function App() {
   const handleSubmit = async () => {
     if(editorRef.current) {
       const content = editorRef.current.getContent();
-      const done = await fetchBlogContent(content);
+
+      const dialog = document.querySelector(".blog-content-preview.preview");
+      const titleEle = dialog.getElementsByTagName("h1");
+      let title = '';
+      if(title) title = titleEle[0].textContent;
+      else title = dialog.firstChild.textContent;
+
+      const done = fetchBlogContent(content, title);
     }
   }
 
