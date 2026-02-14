@@ -9,3 +9,18 @@
     gap: 20px;
     margin: 30px;
 }
+
+
+.loading-dialog {
+  height: 100%;
+  width: 100%;
+  padding-top: 20%;
+}
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
