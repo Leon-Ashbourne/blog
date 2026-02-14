@@ -1,6 +1,8 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
+
 import './App.css';
+import './styles/load.css';
 
 function fetchBlogContent(content, title) {
   const targetOrigin = "http://localhost:5173";
@@ -10,9 +12,22 @@ function fetchBlogContent(content, title) {
     const iframe = document.querySelector('#main-domain');
     const window = iframe.contentWindow;
     window.postMessage(JSON.stringify({title, content}), targetOrigin);
+
   }
 
   sendData();
+}
+
+function extractContent(content) {    
+
+  const preview = document.querySelector(".blog-content-preview.preview");
+  const titleEle = preview.getElementsByTagName("h1");
+
+  let title = '';
+  if(titleEle.length > 0) title = titleEle[0].textContent;
+  else title = preview.firstChild.textContent;
+
+  fetchBlogContent(content, title);
 }
 
 export default function App() {
@@ -33,7 +48,6 @@ export default function App() {
   };
 
   const handleCancel = () => {
-
     const dialog = document.querySelector('.blog-dialog.container');
     dialog.close();
 
@@ -41,16 +55,14 @@ export default function App() {
 
 
   const handleSubmit = async () => {
+    showLoader();
+    handleCancel();
+    
     if(editorRef.current) {
+
       const content = editorRef.current.getContent();
+      extractContent(content);
 
-      const dialog = document.querySelector(".blog-content-preview.preview");
-      const titleEle = dialog.getElementsByTagName("h1");
-      let title = '';
-      if(title) title = titleEle[0].textContent;
-      else title = dialog.firstChild.textContent;
-
-      const done = fetchBlogContent(content, title);
     }
   }
 
@@ -64,6 +76,9 @@ export default function App() {
             <button onClick={handleSubmit} className="submit-button button">Submit</button>
           </div>
         </dialog>
+      </div>
+      <div>
+        <LoadPage />
       </div>
       <Editor
         apiKey={apiKey}
@@ -88,4 +103,22 @@ export default function App() {
       <button onClick={handlePreview}>Preview</button>
     </>
   );
+}
+
+function showLoader() {
+  const loader = document.querySelector(".loading-dialog");
+  loader.showModal();
+}
+
+function LoadPage() {
+
+  return (
+    <dialog className="loading-dialog">
+      <div className="loader-container">
+        <div className="loading-animation" style={{ height: "120px", width: "120px" }}></div>
+        <div>Just a moment… we're sending your content.</div>
+      </div>
+    </dialog>
+  )
+  
 }
