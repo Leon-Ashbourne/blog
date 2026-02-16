@@ -38,13 +38,16 @@ function useResult(setState) {
 
   const dialogClassChange = document.querySelector(".loading-dialog");
   
+  //TODO - render success message.
   const config = { attributes: true };
   const cb = (mutationList, observer) => {
     for(const mutation of mutationList ) {
       if(mutation.type === "attributes") {
         const value = dialogClassChange.classList[1];
-        setState(value);
-        observer.disconnect();
+        if(value === "success" || value === "failure") { 
+          setState(value);
+          observer.disconnect();
+        }
       }
     }
   }
@@ -53,7 +56,7 @@ function useResult(setState) {
   observer.observe(dialogClassChange, config);
 
   return () => observer.disconnect();
-}, []);
+  }, []);
 }
 
 export default function App() {
@@ -143,7 +146,7 @@ function showLoader() {
 
 function LoadPage() {
   const state = useContext(ContentContext).state;
-  console.log(state);
+  console.log(state)
 
   return (
     <dialog className="loading-dialog">
