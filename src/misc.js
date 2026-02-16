@@ -11,15 +11,12 @@ window.addEventListener("message", (e) => {
 })
 
 function handleMessage(message) {
-    console.log("handleMEssage", message);
     const loaderDialog = document.querySelector(".loading-dialog");
 
     if(message === "true") {
-        loaderDialog.firstChild.textContent = "Successfully sent.";
-        setTimeout(() => loaderDialog.close(), 4000)
+        loaderDialog.classList.add("success")
     }
     else if(message === "false") {
-        loaderDialog.firstChild.textContent = "Something went wrong. Couldn't send the content.";
-        setTimeout(() => loaderDialog.close(), 4000)
+        loaderDialog.classList.add("failure");
     }
 }
