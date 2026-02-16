@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 
 import './App.css';
@@ -30,10 +30,39 @@ function extractContent(content) {
   fetchBlogContent(content, title);
 }
 
+
+const ContentContext = createContext(null);
+
+function useResult(setState) {
+  useEffect(() => {
+
+  const dialogClassChange = document.querySelector(".loading-dialog");
+  
+  const config = { attributes: true };
+  const cb = (mutationList, observer) => {
+    for(const mutation of mutationList ) {
+      if(mutation.type === "attributes") {
+        const value = dialogClassChange.classList[1];
+        setState(value);
+        observer.disconnect();
+      }
+    }
+  }
+
+  const observer = new MutationObserver(cb);
+  observer.observe(dialogClassChange, config);
+
+  return () => observer.disconnect();
+}, []);
+}
+
 export default function App() {
 
   const editorRef = useRef(null);
-  const apiKey = import.meta.env.VITE_API_KEY
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const [ state, setState ] = useState(false);
+
+  useResult(setState);
 
   const handlePreview = () => {
     if (editorRef.current) {
@@ -78,7 +107,9 @@ export default function App() {
         </dialog>
       </div>
       <div>
-        <LoadPage />
+        <ContentContext value={ { state, setState } }>
+          <LoadPage />
+        </ContentContext>
       </div>
       <Editor
         apiKey={apiKey}
@@ -111,12 +142,27 @@ function showLoader() {
 }
 
 function LoadPage() {
+  const state = useContext(ContentContext).state;
+  console.log(state);
 
   return (
     <dialog className="loading-dialog">
-      <div className="loader-container">
-        <div className="loading-animation" style={{ height: "120px", width: "120px" }}></div>
-        <div>Just a moment… we're sending your content.</div>
+      <div className="wrapper-result">
+        { state === "success" ? 
+          <div className="success-message">
+            <div>Successfully sent.</div>
+          </div>
+          : state === "failure" ? 
+          <div className="failure-message" >
+            <div>Something went wrong. Please try again later.</div>
+          </div>
+          : 
+          <div className="loader-container loading">
+            <div className="loading-animation" style={{ height: "120px", width: "120px" }}></div>
+            <div>Just a moment… we're sending your content.</div>
+            <div>{state}</div>
+          </div>
+        }
       </div>
     </dialog>
   )
