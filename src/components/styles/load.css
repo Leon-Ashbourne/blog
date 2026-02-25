@@ -1,0 +1,46 @@
+.loading-animation {
+    border: 12px solid #B2BEB5; 
+    border-style: dotted;
+    border-top: solid black;
+    border-radius: 50%;
+    animation-delay: 1s;
+    animation-duration: 4s;
+    animation-name: loader;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+.loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.styled-loader {
+  border: 3px solid black; 
+  border-style: solid;
+  border-top: 3px solid #f3f3f3;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: 2s linear 1s infinite load
+}
+
+@keyframes load {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

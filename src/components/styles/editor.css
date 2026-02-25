@@ -1,0 +1,76 @@
+::backdrop {
+  background-color: #36454F;
+  opacity: 0.95;
+}
+
+.dialog-controllers {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px;
+}
+
+.loading-dialog {
+  height: 100%;
+  width: 100%;
+  padding-top: 20%;
+}
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.editor-main {
+  padding: 5%;
+}
+
+.title-container {
+  display: flex;
+  font-size: 1.4rem;
+  padding: 1rem;
+  background-color: #36454F;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  border-radius: 5px;
+}
+
+.ta-styled {
+  width: 100%;
+  display: flex;
+}
+
+textarea#title {
+  display: block;
+  width: 100%;
+  outline: none;
+  font-size: 1.4rem;
+  padding-top: 0.5rem;
+  height: 2.5rem;
+  background-color: inherit;
+  border: none;
+  color: rgb(209, 255, 25);
+  scrollbar-width: none;
+}
+
+.loading-dialog {
+  background-color: #36454F;
+  border: none;
+  color: white;
+  div {
+    text-align: center;
+    font-size: 2rem;
+  }
+  .back-link {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color:rgb(209, 255, 25);
+  }
+}

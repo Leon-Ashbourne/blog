@@ -1,0 +1,60 @@
+.form-wrapper {
+    padding: 10px 15%;
+    font-size: 1.4rem;
+    display: flex;
+    margin: 4rem 0;
+    justify-content: center;
+}
+
+.form-styled {
+    border: 2px solid whitesmoke;
+    padding: 1rem 4rem 4rem;
+    display: grid;
+    font-weight: 700;
+    background-color: black;
+}
+
+.cred-styled {
+    justify-self: center;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    color: rgb(209, 255, 25);
+}
+
+.input-styled {
+    outline: none;
+    height: 2.2rem;
+    width: 22rem;
+}
+
+.label-styled {
+    margin-bottom: 0.4rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.signup-button-styled {
+    display: flex;
+    justify-content: end;
+    margin-top: 2rem;
+
+    button {
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(209, 255, 25);
+    border: 2px double black;
+    color: black;
+    cursor: pointer;
+    }
+}
+
+.username-password-error {
+    color: red;
+    margin-bottom: 1.5rem;
+}
