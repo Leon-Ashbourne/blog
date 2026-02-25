@@ -1,26 +1,15 @@
-::backdrop {
-  background-image: radial-gradient(circle,rgba(53, 54, 59, 0.75) 3%, rgba(196, 196, 196, 1) 40%);
-  opacity: 0.95;
-}
-
-.dialog-controllers {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px;
-}
-
-
-.loading-dialog {
-  height: 100%;
-  width: 100%;
-  padding-top: 20%;
-}
-.loader-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-size: 20px;
-  align-items: center;
+* {
   box-sizing: border-box;
+}
+
+body {
+  color: whitesmoke;
+}
+
+.app-wrapper {
+  background-image: url('./assets//images/home2.jpg');
+}
+
+main {
+    min-height: 55vh;
 }
