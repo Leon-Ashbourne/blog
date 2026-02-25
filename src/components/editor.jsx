@@ -19,7 +19,7 @@ async function fetchBlogContent(data, postid, setState) {
 
   try {
       const token = localStorage.getItem('Token');
-      const url = !isNaN(parseInt(postid)) ? `http://localhost:5000/posts/update/${postid}` : 'http://localhost:5000/posts';
+      const url = !isNaN(parseInt(postid)) ? `http://localhost:5000/posts/${postid}` : 'http://localhost:5000/posts';
       const method = !isNaN(parseInt(postid)) ? "PUT" : "POST";
 
       // if(!token) - TODO- signin redirect while storing the blog content
