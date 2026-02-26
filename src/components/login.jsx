@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router";
 import "./styles/cred.css"
 
 async function sessionLogin(data) {
-    const isAuthenticated = await fetch('http://localhost:5000/Sign-in', {
+    const isAuthenticated = await fetch('https://blog-api-fi4r.onrender.com/Sign-in', {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify(data),

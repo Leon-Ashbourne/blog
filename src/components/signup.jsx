@@ -23,7 +23,7 @@ export function extractData(formData) {
 }
 
 async function sendToServer(data) {
-    const userCreated = await fetch('http://localhost:5000/Sign-up', {
+    const userCreated = await fetch('https://blog-api-fi4r.onrender.com/Sign-up', {
         method: "POST",
         mode: "cors",
         body: JSON.stringify(data),

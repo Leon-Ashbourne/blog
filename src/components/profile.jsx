@@ -52,7 +52,7 @@ async function publishOrUnpublish(value, postid) {
         },
         body
     }
-    const result = await fetch(`http://localhost:5000/posts/publish/${postid}`, options);
+    const result = await fetch(`https://blog-api-fi4r.onrender.com/posts/publish/${postid}`, options);
     if(!result.ok) {
         console.error(result.error);
         return false;

@@ -58,7 +58,7 @@ function App() {
       const token = localStorage.getItem("Token");
 
       async function loadData() {
-      const url = 'http://localhost:5000/posts';
+      const url = 'https://blog-api-fi4r.onrender.com/posts';
       const posts = await useFetchSlefPosts(url, token, setServerStatus);
 
       return posts;
