@@ -4,6 +4,7 @@ import IsAuthenticated from './components/authenticate';
 import ErrorPage from './components/error/serverError';
 import SigninForm from './components/login';
 import { Profile } from './components/profile';
+import { SignupForm } from './components/signup';
 
 const routes = [
     {
@@ -29,11 +30,22 @@ const routes = [
             },
             {
                 path: '/posts/:postid',
-                Component: BlogEditor
+                Component: BlogEditor,
+                errorElement: <ErrorPage />
             },
             {
                 path: '/create',
-                Component: BlogEditor
+                Component: BlogEditor,
+                errorElement: <ErrorPage />
+            },
+            {
+                path: '/Sign-up',
+                Component: SignupForm,
+                errorElement: <ErrorPage />
+            },
+            {
+                path: '/server-error',
+                Component: <ErrorPage />
             }
         ]
     }
